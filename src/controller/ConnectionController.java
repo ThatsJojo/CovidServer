@@ -53,7 +53,7 @@ public class ConnectionController {
 
     public String getUserData() {
         userController.getUSERS().forEach((String t, User u) -> {
-            auxString += t + ":" + u.getName() + "," + u.getKey() + "," + u.getAge() + "," + u.getSex() + "\n";
+            auxString += t + ":" + u.getName().replace(' ', '&') + "," + u.getAge() + "," + u.getSex() + "\n";
         });
         return auxString;
     }

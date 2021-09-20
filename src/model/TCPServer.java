@@ -30,7 +30,6 @@ public class TCPServer extends Thread {
             server = new ServerSocket(port, 0, InetAddress.getByName(ip));
             while (connected) {
                 Socket socket = server.accept();
-                System.out.println("CONECTADO COM " + socket.getInetAddress());
                 TCPRequest req = TCPRequest.read(socket.getInputStream());
                 String route = req.getRoute();
                 String data = "";
