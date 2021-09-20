@@ -23,6 +23,10 @@ public class TCPServer extends Thread {
         this.myController = myController;
     }
 
+    /**
+     * Enquanto conectado, gerencia as ações a serem realizadas dada cada request recebida
+     * bem como as respostas para elas.
+     */
     @Override
     public void start() {
         try {
@@ -35,14 +39,14 @@ public class TCPServer extends Thread {
                 String data = "";
                 int statusCode;
                 String message;
-                if (route.equals("/")) {
+                if (route.equals("/")) {//Assume-se um GET em todos os usuários.
                     data = myController.getUserData();
                 } else {
                     String[] splitRoute = route.split("/");
                     if (splitRoute.length == 3) {
-                        if (splitRoute[1].equals("user")) {
+                        if (splitRoute[1].equals("user")) {//Assume-se um GET em um usuário específico.
                             data = myController.getUserData(splitRoute[2]);
-                        } else if (splitRoute[1].equals("sendAllert")) {
+                        } else if (splitRoute[1].equals("sendAllert")) {//Assume-se um POST de Alerta em um usuário específico.
                             String[] st = req.getContentByKey("message");
                             if (st != null && st.length != 0) {
                                 data = myController.sendAllert(splitRoute[2], st[0]);
@@ -50,10 +54,10 @@ public class TCPServer extends Thread {
                         }
                     }
                 }
-                if (data.equals("")) {
+                if (data.equals("")) {//Resposta caso não encontre o usuário para GET ou POST de Alerta.
                     statusCode = 404;
                     message = "Not Found";
-                } else {
+                } else {//Resposta caso encontre.
                     statusCode = 200;
                     message = "OK";
                 }

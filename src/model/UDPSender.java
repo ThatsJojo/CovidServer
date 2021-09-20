@@ -17,12 +17,24 @@ public class UDPSender extends Thread {
     private final int port;
     private boolean connected = false;
 
+    /**
+     * Resposabiliza-se por enviar as alertas para os usuários.
+     * @param myController Controllador de usuários.
+     * @param ip Endereço para conexão UDP de envio de alertas.
+     * @param port Porta para conexão UDP de envio de alertas. 
+     */
     public UDPSender(ConnectionController myController, String ip, int port) {
         this.myController = myController;
         this.ip = ip;
         this.port = port;
     }
 
+    /**
+     * Envia uma mensagem de alerta para um dado usuário.
+     * @param userKey chave relacionada ao usuário.
+     * @param message Mensagem a ser enviada.
+     * @return true caso consiga enviar. False caso não consiga.
+     */
     public boolean sendMessage(String userKey, String message) {
         new Thread() {
             @Override

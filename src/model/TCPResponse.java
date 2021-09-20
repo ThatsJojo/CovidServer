@@ -11,6 +11,13 @@ public class TCPResponse {
     private String content;
     private OutputStream outputStream;
 
+    /**
+     * Resposta a ser enviada pela API.
+     * @param protocol Protocolo de resposta.
+     * @param statusCode Status da resposta.
+     * @param message Mensagem contida na resposta.
+     * @param content Conteúdo da resposta.
+     */
     public TCPResponse(String protocol, int statusCode, String message, String content) {
         this.protocol = protocol;
         this.statusCode = statusCode;
@@ -18,6 +25,10 @@ public class TCPResponse {
         this.content = content;
     }
 
+    /**
+     * Envia a resposta.
+     * @throws IOException Caso não consiga enviar a resposta por completo.
+     */
     public void send() throws IOException {
         outputStream.write(("" + protocol + " " + statusCode + " " + message + "\r\n" + content).getBytes());
         outputStream.flush();

@@ -18,6 +18,21 @@ public class User {
     private String time;
     private boolean hasUnseenAllert;
 
+    /**
+     * Cria um usuário
+     * @param key Chave do usuário.
+     * @param name Nome do usuário.
+     * @param age Idade do usuário.
+     * @param sex Sexo do usuário.
+     * @param temperature Temperatura do usuário.
+     * @param breathingRate Taxa respiratória do usuário.
+     * @param heartRate Frequência Cardíaca do usuário.
+     * @param oxygenSaturation Saturação de oxigênio do usuário.
+     * @param systolicBloodPressure Pressão sanguínea sistólica do usuário.
+     * @param diastolicBloodPressure Pressão sanguínea diastólica do usuário.
+     * @param date Data da última atualização dos dados do usuário.
+     * @param time Horário da última atualização dos dados do usuário.
+     */
     public User(String key, String name, String age, String sex, String temperature, String breathingRate, String heartRate, String oxygenSaturation, String systolicBloodPressure, String diastolicBloodPressure, String date, String time) {
         this.key = key;
         this.name = name;
@@ -58,6 +73,10 @@ public class User {
         return true;
     }
 
+    /**
+     * Retorna as informações do usuário formatas para serem enviadas via TCP Response.
+     * @return 
+     */
     public String getData() {
         return  key + "\n"
                 + name + "\n"

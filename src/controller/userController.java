@@ -7,6 +7,12 @@ public class userController {
 
     private static final HashMap<String, User> USERS = new HashMap();
 
+    /**
+     * Atualiza as informações do usuário a partir do conteúdo recebido pelos dispositivos.
+     * @param recievedMessage Conteúdo recebido via UDP referente aos dispositivos.
+     * @param user chave que define a qual usuário pertence o conteúdo.
+     * @return A instância do usuário após atualização.
+     */
     public static User updateUser(String[] recievedMessage, String user) {
         User u = new User(recievedMessage[0], //key
                 recievedMessage[1], //name

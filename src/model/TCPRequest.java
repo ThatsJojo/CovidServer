@@ -15,15 +15,22 @@ public class TCPRequest {
     private long timeOut;
     private final HashMap<String, String[]> content = new HashMap();
 
+    /**
+     * Request gerada a partir de um inputStream de socket TCP.
+     * @param inputStream inputStream do Socket.
+     * @return A Request do usuário encapsulada na classe atual.
+     * @throws IOException Caso não consiga ler a request por completo.
+     */
     static TCPRequest read(InputStream inputStream) throws IOException {
         TCPRequest req = new TCPRequest();
         BufferedReader buffer = new BufferedReader(new InputStreamReader(inputStream));
         String line = buffer.readLine();
         String[] dataReq = line.split(" ");
-        req.method = dataReq[0];
-        req.route = dataReq[1];
-        req.protocol = dataReq[2];
+        req.method = dataReq[0];//Captura o método.
+        req.route = dataReq[1];//Captura a rota.
+        req.protocol = dataReq[2];//Captura o protocolo.
         line = buffer.readLine();
+        //Lê a Request até o fim para capturar o conteúdo/cabeçalho da Request.
         while (line != null && !line.isEmpty()) {
             String[] segments = line.split(":");
             if (segments.length > 1) {
@@ -35,6 +42,10 @@ public class TCPRequest {
         return req;
     }
 
+    /**
+     * Retorna o método da Request.
+     * @return 
+     */
     public String getMethod() {
         return method;
     }
@@ -43,6 +54,10 @@ public class TCPRequest {
         this.method = method;
     }
 
+    /**
+     * Retorna o protocolo da Request.
+     * @return 
+     */
     public String getProtocol() {
         return protocol;
     }

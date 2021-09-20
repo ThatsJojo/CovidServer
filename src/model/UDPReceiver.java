@@ -15,6 +15,12 @@ public class UDPReceiver extends Thread {
     private final int port;
     private boolean connected;
 
+    /**
+     * Classe que realiza a conexão e reconhecimento dos pacotes UDP recebidos.
+     * @param myController
+     * @param ip Endereço IP para receber os pacotes dos dispositivos.
+     * @param port Porta para receber os pacotes dos dispositivos.
+     */
     public UDPReceiver(ConnectionController myController, String ip, int port) {
         this.myController = myController;
         this.ip = ip;
@@ -22,6 +28,10 @@ public class UDPReceiver extends Thread {
         connected = false;
     }
 
+    /**
+     * Enquanto conectado, recebe os pacotes TCP no endereço indicado e redireciona
+     * uma ação para o usuário correto.
+     */
     @Override
     public void run() {
         String[] recievedMessage;
@@ -44,6 +54,9 @@ public class UDPReceiver extends Thread {
         }
     }
 
+    /**
+     * Finaliza a conexão.
+     */
     public void stopConnection() {
         this.connected = false;
     }

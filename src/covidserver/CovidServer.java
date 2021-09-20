@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class CovidServer {
 
     public static void main(String[] args) {
+        //Cadastra endereçoes comuns de utilização caso o usuário não deseje especificálos.
         Scanner sc1 = new Scanner(System.in);
         Scanner sc2 = new Scanner(System.in);
         String UDPReceiverIP = "127.0.0.1";
@@ -14,7 +15,7 @@ public class CovidServer {
         int UDPSenderPort = 8080;
         String TCPReceiverIP = "127.0.0.1";
         int TCPReceiverPort = 8083;
-
+        //Pede que o usuário informe os endereços de conexão.
         System.out.println("Deseja configurar os endereços de comunicação? (sim/não)");
         boolean flag = sc1.nextLine().equals("sim");
         if (flag) {
