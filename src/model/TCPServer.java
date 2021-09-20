@@ -28,7 +28,7 @@ public class TCPServer extends Thread {
         try {
             connected = true;
             server = new ServerSocket(port, 0, InetAddress.getByName(ip));
-            while (connected) {    
+            while (connected) {
                 Socket socket = server.accept();
                 System.out.println("CONECTADO COM " + socket.getInetAddress());
                 TCPRequest req = TCPRequest.read(socket.getInputStream());
@@ -44,7 +44,10 @@ public class TCPServer extends Thread {
                         if (splitRoute[1].equals("user")) {
                             data = myController.getUserData(splitRoute[2]);
                         } else if (splitRoute[1].equals("sendAllert")) {
-                            data = myController.sendAllert(splitRoute[2], req.getContentByKey("message")[0]);
+                            String[] st = req.getContentByKey("message");
+                            if (st != null && st.length != 0) {
+                                data = myController.sendAllert(splitRoute[2], st[0]);
+                            }
                         }
                     }
                 }
