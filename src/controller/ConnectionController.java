@@ -19,12 +19,6 @@ public class ConnectionController {
     private static String auxString = "";
 
     public ConnectionController(String UDPReceiverIP, int UDPReceiverPort, String UDPSenderIP, int UDPSenderPort, String TCPServerIP, int TCPServerPort) {
-//        this.UDPReceiverIP = UDPReceiverIP;
-//        this.UDPReceiverPort = UDPReceiverPort;
-//        this.UDPSenderIP = UDPSenderIP;
-//        this.UDPSenderPort = UDPSenderPort;
-//        this.TCPServerIP = TCPServerIP;
-//        this.TCPServerPort = TCPServerPort;
         this.udpReceiver = new UDPReceiver(this, UDPReceiverIP, UDPReceiverPort);
         this.udpSender = new UDPSender(this, UDPSenderIP, UDPSenderPort);
         this.tcpServer = new TCPServer(this, TCPServerIP, TCPServerPort);
@@ -32,11 +26,10 @@ public class ConnectionController {
     }
 
     public void updateUser(String[] recievedMessage, String user) {
-        if (isValidMessage(recievedMessage)) {
             User u = userController.updateUser(recievedMessage, user);
-        }
     }
 
+    @Deprecated
     private boolean isValidMessage(String[] recievedMessage) {
         int i = 0;
         if (recievedMessage != null && recievedMessage.length == 12) {

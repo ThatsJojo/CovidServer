@@ -43,7 +43,7 @@ public class UDPReceiver extends Thread {
             Logger.getLogger(UDPReceiver.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void stopConnection() {
         this.connected = false;
     }
